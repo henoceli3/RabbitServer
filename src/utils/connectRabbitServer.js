@@ -1,15 +1,21 @@
 import { connect } from "amqplib";
+import dotenv from "dotenv";
+dotenv.config();
 
+/**
+ * Connects to the RabbitMQ server.
+ *
+ * @return {Promise} A promise that resolves to a connection object.
+ */
 
 const connectRabbitServer = () => {
-    return connect({
-        hostname:
-            "b-05e91662-2e5f-4d08-b2c0-0e580f88c71d.mq.eu-north-1.amazonaws.com",
-        protocol: "amqps",
-        port: 5671,
-        username: "ouatt",
-        password: "R@bbitP@ssWord2023",
-    });
-}
+  return connect({
+    hostname: process.env.RABBIT_HOST_NAME || "localhost",
+    protocol: process.env.RABBIT_PROTOCOL,
+    port: process.env.RABBIT_PORT,
+    username: process.env.RABBIT_USERNAME,
+    password: process.env.RABBIT_PASSWORD,
+  });
+};
 
-export default connectRabbitServer
+export default connectRabbitServer;

@@ -1,15 +1,14 @@
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-import router from "./src/routes/v1/router.js";
+import router from "./src/utils/router.js";
 import dotenv from "dotenv";
-import expressWs from "express-ws";
-dotenv.config();
 import { inject } from "@vercel/analytics";
+inject();
+dotenv.config();
 
 //appelle de express()
 const app = express();
-// expressWs(app);
 
 // definition du port
 const port = process.env.PORT || 4000;
@@ -36,6 +35,6 @@ app.listen(port, () =>
     `Notre application Node est démarrée sur: http://localhost:${port}`
   )
 );
-inject();
+
 //Exporter l'appli
 export default app;
