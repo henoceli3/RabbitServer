@@ -1,4 +1,3 @@
-import { connect } from "amqplib";
 import connectRabbitServer from "../../../utils/connectRabbitServer.js";
 
 const receiveMangoMsg = async (req, res) => {
