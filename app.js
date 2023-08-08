@@ -5,6 +5,9 @@ import router from "./src/routes/v1/router.js";
 import dotenv from "dotenv";
 import expressWs from "express-ws";
 dotenv.config();
+import { inject } from "@vercel/analytics";
+
+inject();
 
 //appelle de express()
 const app = express();
