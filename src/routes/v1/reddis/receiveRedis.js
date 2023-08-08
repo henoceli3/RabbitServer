@@ -13,7 +13,6 @@ const receiveRedisoMsg = async (req, res) => {
     channel.publish(exchange, "", Buffer.from(JSON.stringify(newMessage)));
 
     const message = `Nouveau message publiée sur la file Redis`;
-    console.log(message, newMessage);
 
     // Fermer la connexion avec RabbitMQ
     await channel.close();
