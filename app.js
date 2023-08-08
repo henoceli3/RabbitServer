@@ -7,8 +7,6 @@ import expressWs from "express-ws";
 dotenv.config();
 import { inject } from "@vercel/analytics";
 
-inject();
-
 //appelle de express()
 const app = express();
 // expressWs(app);
@@ -16,7 +14,7 @@ const app = express();
 // definition du port
 const port = process.env.PORT || 4000;
 
-// 
+//
 app.use(cors());
 
 // pour renvoyer le corps en json
@@ -38,6 +36,6 @@ app.listen(port, () =>
     `Notre application Node est démarrée sur: http://localhost:${port}`
   )
 );
-
+inject();
 //Exporter l'appli
 export default app;
