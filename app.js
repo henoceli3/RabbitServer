@@ -8,7 +8,7 @@ dotenv.config();
 
 //appelle de express()
 const app = express();
-expressWs(app);
+// expressWs(app);
 
 // definition du port
 const port = process.env.PORT || 4000;
