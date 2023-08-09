@@ -1,17 +1,20 @@
 import connectRabbitServer from "../../../utils/connectRabbitServer.js";
 
-const receivePostGreeMsg = async (req, res) => {
+const receivePostgreeMsg = async (req, res) => {
   try {
-    const exchange = "postGreeQueu";
+    const queuName = "PostgreeQueu"; // la file sur la quelle on va publier le message
     const newMessage = req.body;
+
+    // connexion avec RabbitMQ
     const connection = await connectRabbitServer();
     const channel = await connection.createChannel();
 
-    // Publier le nouveau message sur l'échange de type "fanout"
-    await channel.assertExchange(exchange, "fanout", { durable: true });
-    channel.publish(exchange, "", Buffer.from(JSON.stringify(newMessage)));
+    // Publier le nouveau message sur une fille d'attente
+    await channel.assertQueue(queuName, { durable: false });
+    channel.sendToQueue(queuName, Buffer.from(JSON.stringify(newMessage)));
 
-    const message = `Nouveau message publiée`;
+    // message de réponse
+    const message = `Nouveau message publiée sur la file Postgree`;
 
     // Fermer la connexion avec RabbitMQ
     await channel.close();
@@ -24,4 +27,4 @@ const receivePostGreeMsg = async (req, res) => {
   }
 };
 
-export default receivePostGreeMsg;
+export default receivePostgreeMsg;
