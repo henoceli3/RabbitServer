@@ -1,8 +1,8 @@
 import connectRabbitServer from "../../../utils/connectRabbitServer.js";
 
-const receiveMangoMsg = async (req, res) => {
+const receivePostGreeMsg = async (req, res) => {
   try {
-    const exchange = "mangoQueu";
+    const exchange = "postGreeQueu";
     const newMessage = req.body;
     const connection = await connectRabbitServer();
     const channel = await connection.createChannel();
@@ -24,4 +24,4 @@ const receiveMangoMsg = async (req, res) => {
   }
 };
 
-export default receiveMangoMsg;
+export default receivePostGreeMsg;
