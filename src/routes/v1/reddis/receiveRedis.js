@@ -20,7 +20,7 @@ const receiveRedisoMsg = async (req, res) => {
     await channel.close();
     await connection.close();
 
-    res.status(200).json({ message, data: newMessage });
+    res.status(200).json({ message });
   } catch (error) {
     console.warn(error);
     res.status(500).json(error);
