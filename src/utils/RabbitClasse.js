@@ -49,6 +49,9 @@ class RabbitServer {
   }
 
   async close() {
+    if (this.channel) {
+      await this.channel.close();
+    }
     if (this.connection) {
       await this.connection.close();
     }
