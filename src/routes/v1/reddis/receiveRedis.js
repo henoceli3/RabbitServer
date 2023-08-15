@@ -6,6 +6,7 @@ const receiveRedisoMsg = async (req, res) => {
   try {
     const message  = req.body;
     const rabbitServer = myRabbitServer;
+    await rabbitServer.connect();
     await rabbitServer.publishToQueue("fileRedis", message);
     await rabbitServer.close();
     const message_response = `Nouveau message publiée sur la file Redis`;
