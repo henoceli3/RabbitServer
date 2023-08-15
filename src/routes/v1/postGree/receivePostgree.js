@@ -3,7 +3,7 @@ import myRabbitServer from "../../../utils/myRabbitServer.js";
 
 const receivePostgreeMsg = async (req, res) => {
   try {
-    const { message } = req.body;
+    const message = req.body;
     const rabbitServer = myRabbitServer;
     await rabbitServer.publishToQueue("filePostgree", message);
     await rabbitServer.close();

@@ -3,7 +3,7 @@ import myRabbitServer from "../../../utils/myRabbitServer.js";
 
 const receiveMangoMsg = async (req, res) => {
   try {
-    const { message } = req.body;
+    const message = req.body;
     const rabbitServer = myRabbitServer;
     await rabbitServer.connect();
     await rabbitServer.publishToQueue("fileMango", message);

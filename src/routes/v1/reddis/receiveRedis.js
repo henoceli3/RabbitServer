@@ -4,9 +4,9 @@ import myRabbitServer from "../../../utils/myRabbitServer.js";
 
 const receiveRedisoMsg = async (req, res) => {
   try {
-    const { message } = req.body;
+    const message  = req.body;
     const rabbitServer = myRabbitServer;
-    await rabbitServer.publishToQueue("fileRediso", message);
+    await rabbitServer.publishToQueue("fileRedis", message);
     await rabbitServer.close();
     const message_response = `Nouveau message publiée sur la file Redis`;
     res.status(200).json({ message_response });

@@ -36,7 +36,7 @@ class RabbitServer {
     }
     await this.channel.assertQueue(queuName, { durable: false });
     this.channel.sendToQueue(queuName, Buffer.from(JSON.stringify(message)));
-    console.log(`Message publié sur la file ${queuName}: ${message}`);
+    console.log(`Message publié sur la file ${queuName}`, message);
   }
 
   async subscribeToQueue(queuName, callback) {
