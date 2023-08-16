@@ -1,4 +1,12 @@
 import myRabbitServer from "../../../utils/myRabbitServer.js";
+
+/**
+ * Reçoit un message Redis et le publie dans une file d'attente RabbitMQ.
+ *
+ * @param {Object} req - l'objet de requête
+ * @param {Object} res - l'objet de réponse
+ * @return {Promise<void>} une promesse qui se résout lorsque le message est publié
+ */
 const receiveRedisoMsg = async (req, res) => {
   try {
     const message  = req.body;

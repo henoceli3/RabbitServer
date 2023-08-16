@@ -1,6 +1,12 @@
 import myRabbitServer from "../../../utils/myRabbitServer.js";
 
-
+/**
+ * Reçoit un message Postgree depuis le corps de la requête et le publie dans la file "filePostgree" en utilisant un serveur RabbitMQ.
+ *
+ * @param {Object} req - L'objet de requête.
+ * @param {Object} res - L'objet de réponse.
+ * @return {Promise<void>} Une promesse qui se résout lorsque le message a été publié avec succès ou est rejetée avec un message d'erreur.
+ */
 const receivePostgreeMsg = async (req, res) => {
   try {
     const message = req.body;

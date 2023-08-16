@@ -11,6 +11,11 @@ class RabbitServer {
     this.channel = null;
   }
 
+    /**
+     * Se connecte au serveur RabbitMQ.
+     *
+     * @return {Promise<void>} - Une promesse qui se résout lorsque la connexion est établie.
+     */
   async connect() {
     try {
       this.connection = await connect({
@@ -30,6 +35,13 @@ class RabbitServer {
     }
   }
 
+    /**
+     * Publie un message dans la file d'attente spécifiée.
+     *
+     * @param {string} queuName - Le nom de la file d'attente.
+     * @param {any} message - Le message à publier.
+     * @return {Promise<void>} - Une promesse qui se résout lorsque le message est publié avec succès.
+     */
   async publishToQueue(queuName, message) {
     if (!this.channel) {
       console.warn("La connexion n'est pas ouverte.");
@@ -39,6 +51,13 @@ class RabbitServer {
     console.log(`Message publié sur la file ${queuName}`, message);
   }
 
+    /**
+     * Abonnez-vous à une file d'attente et exécutez une fonction de rappel lorsque vous recevez un message.
+     *
+     * @param {string} queueName - Le nom de la file d'attente à laquelle s'abonner.
+     * @param {function} callback - La fonction de rappel à exécuter lorsqu'un message est reçu.
+     * @return {Promise<void>} - Une promesse qui se résout lorsque l'abonnement est réussi.
+     */
   async subscribeToQueue(queuName, callback) {
     if (!this.channel) {
       console.warn("La connexion n'est pas ouverte.");
@@ -48,6 +67,12 @@ class RabbitServer {
     console.log(`Ecoute de la file ${queuName}`);
   }
 
+    /**
+     * Ferme le canal et la connexion s'ils existent.
+     *
+     * @return {Promise<void>} - Une promesse qui se résout lorsque le canal et la connexion sont fermés.
+     */
+  
   async close() {
     if (this.channel) {
       await this.channel.close();
