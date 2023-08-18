@@ -1,4 +1,5 @@
-import myRabbitServer from "../../../utils/myRabbitServer.js";
+import myRabbitServer from "../../../../utils/myRabbitServer.js";
+
 
 /**
  * Reçoit un message Redis et le publie dans une file d'attente RabbitMQ.

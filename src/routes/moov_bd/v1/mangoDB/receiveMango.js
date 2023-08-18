@@ -1,4 +1,5 @@
-import myRabbitServer from "../../../utils/myRabbitServer.js";
+import myRabbitServer from "../../../../utils/myRabbitServer.js";
+
 
 /**
  * Reçoit un message Mango et le publie dans la file "fileMango".

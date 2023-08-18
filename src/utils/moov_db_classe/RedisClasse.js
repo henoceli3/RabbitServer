@@ -10,6 +10,14 @@ class RedisConnector {
   connect() {
     this.client = redis.createClient(this.port, this.host);
 
+    this.client.connect((error) => {
+      if (error) {
+        console.error("Connection error:", error);
+      } else {
+        console.log("Connected to Redis");
+      }
+    });
+
     this.client.on("connect", () => {
       console.log("Connected to Redis");
     });

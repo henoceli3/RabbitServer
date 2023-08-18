@@ -1,10 +1,9 @@
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-import router from "./src/utils/router.js";
 import dotenv from "dotenv";
-import { inject } from "@vercel/analytics";
-inject();
+import sequelize  from "./src/db/sequelize.js";
+import router from "./router.js";
 dotenv.config();
 
 //appelle de express()
@@ -18,6 +17,8 @@ app.use(cors());
 
 // pour renvoyer le corps en json
 app.use(bodyParser.json());
+
+sequelize.initDb();
 
 // routes
 app.use("/", router);

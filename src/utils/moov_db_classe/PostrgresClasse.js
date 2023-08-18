@@ -2,10 +2,11 @@ import mysql from "mysql2/promise";
 import pg from "pg";
 
 class DatabaseConnector {
-  constructor(host, user, password, databaseType) {
+  constructor(host, user, password, database, databaseType) {
     this.host = host;
     this.user = user;
     this.password = password;
+    this.database = database; // Specify the database name
     this.databaseType = databaseType; // 'mysql' or 'postgres'
     this.connection = null;
   }
@@ -16,12 +17,14 @@ class DatabaseConnector {
         host: this.host,
         user: this.user,
         password: this.password,
+        database: this.database, // Specify the database name here
       });
     } else if (this.databaseType === "postgres") {
       this.connection = new pg.Client({
         host: this.host,
         user: this.user,
         password: this.password,
+        database: this.database, // Specify the database name here
       });
       await this.connection.connect();
     }
@@ -81,13 +84,15 @@ class DatabaseConnector {
   }
 }
 
+
+
 // Example usage
 (async () => {
-  const db = new DatabaseConnector("localhost", "user", "password", "mysql");
+  const db = new DatabaseConnector("localhost", "root", "", "biliiv", "mysql");
   await db.connect();
 
-  const newRecord = { name: "John", age: 30 };
-  const createdRecord = await db.create("users", newRecord);
+  const newRecord = { idcom: 25, idphotos: 30 };
+  const createdRecord = await db.create("exo_com", newRecord);
   console.log("Record created:", createdRecord);
 
   db.disconnect();

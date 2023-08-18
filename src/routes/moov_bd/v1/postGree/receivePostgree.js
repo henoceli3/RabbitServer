@@ -1,4 +1,5 @@
-import myRabbitServer from "../../../utils/myRabbitServer.js";
+import myRabbitServer from "../../../../utils/myRabbitServer.js";
+
 
 /**
  * Reçoit un message Postgree depuis le corps de la requête et le publie dans la file "filePostgree" en utilisant un serveur RabbitMQ.
