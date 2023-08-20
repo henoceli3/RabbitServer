@@ -5,18 +5,16 @@ const storage = diskStorage({
   destination: function (req, file, cb) {
     // Configure le répertoire de destination en fonction du type de fichier
     if (req.body.fileType === "1") {
-      cb(null, "./posts/images/");
+      cb(null, "public/post_files/images/");
     } else if (req.body.fileType === "2") {
-      cb(null, "./posts/audios/");
+      cb(null, "public/post_files/audios/");
     } else if (req.body.fileType === "3") {
-      cb(null, "./posts/videos/");
+      cb(null, "public/post_files/videos/");
     }
   },
   filename: function (req, file, cb) {
     const ext = extname(file.originalname);
-    const fileName = `${req.body.idmembre}_${Date.now()}_${
-      file.fieldname
-    }${ext}`;
+    const fileName = `_${Date.now()}_${ext}`;
     cb(null, fileName);
   },
 });

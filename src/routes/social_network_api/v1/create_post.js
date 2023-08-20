@@ -1,6 +1,5 @@
-import models from "../../../db/sequelize.js";
-import multer, { diskStorage } from "multer";
-import { extname, join } from "path";
+import {models} from "../../../db/sequelize.js";
+import { join } from "path";
 import { renameSync } from "fs";
 
 const addPost = (req, res) => {
@@ -14,6 +13,7 @@ const addPost = (req, res) => {
   if (!post_texte) {
     return res.json({ error: "1", infos: "Aucun texte !" });
   }
+  const tt = models;
 
   if (idmembre) {
     if (post_allfiles === "0") {
@@ -33,8 +33,6 @@ const addPost = (req, res) => {
         const filePath = file.path;
 
         // Gérer la validation et le traitement des fichiers en fonction du fileType
-        // Remplacez cette partie par votre logique de validation et de traitement des fichiers
-        // Déplacer le fichier vers le répertoire approprié
         const destinationPath = join(
           __dirname,
           "posts",
@@ -56,4 +54,4 @@ const addPost = (req, res) => {
   }
 };
 
-export default addPost;
+// export default addPost;

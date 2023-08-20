@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
-import sequelize  from "./src/db/sequelize.js";
+import {initDb}  from "./src/db/sequelize.js";
 import router from "./router.js";
 dotenv.config();
 
@@ -18,7 +18,7 @@ app.use(cors());
 // pour renvoyer le corps en json
 app.use(bodyParser.json());
 
-sequelize.initDb();
+initDb();
 
 // routes
 app.use("/", router);

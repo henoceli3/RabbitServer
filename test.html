@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test de téléchargement de fichier</title>
+</head>
+<body>
+  <h1>Test de téléchargement de fichier</h1>
+  <form id="uploadForm" enctype="multipart/form-data">
+    <input type="text" name="idmembre" placeholder="ID membre"> <br> <br> <br>
+    <textarea name="post_texte" placeholder="Contenu du post"></textarea> <br> <br> <br>
+    <select name="fileType">
+      <option value="1">Image</option>
+      <option value="2">Audio</option>
+      <option value="3">Vidéo</option>
+    </select>
+    <input type="file" name="fichier" multiple> <br> <br>
+    <input type="submit" value="Télécharger"> <br> <br>
+  </form>
+
+  <script>
+    const form = document.getElementById('uploadForm');
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(form);
+      formData.append('post_allfiles',1);
+      console.log(formData);
+
+      try {
+        const response = await fetch('http://localhost:3000/api/social_network_api/v1/create_post', {
+          method: "POST",
+          body: formData
+        });
+
+        const responseData = await response.json();
+        console.log(responseData);
+      } catch (error) {
+        console.error('Une erreur s\'est produite :', error);
+      }
+    });
+  </script>
+</body>
+</html>

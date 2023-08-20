@@ -15,6 +15,7 @@ const sequelize = new Sequelize("eko", "root", "", {
   logging: false,
 });
 
+
 // Création des modèles en utilisant la fonction initModels
 const models = initModels(sequelize);
 
@@ -29,7 +30,7 @@ const initDb = async () => {
   }
 };
 
-export default {
+export  {
   initDb,
   models,
   sequelize,
